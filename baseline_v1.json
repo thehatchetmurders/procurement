@@ -1,0 +1,53 @@
+{
+  "accuracy": 94.0,
+  "correct": 47,
+  "total": 50,
+  "by_intent": {
+    "get_contract": {
+      "correct": 10,
+      "total": 10
+    },
+    "get_anomalies": {
+      "correct": 7,
+      "total": 10
+    },
+    "explain_anomaly": {
+      "correct": 10,
+      "total": 10
+    },
+    "get_volume_anomalies": {
+      "correct": 10,
+      "total": 10
+    },
+    "unknown": {
+      "correct": 10,
+      "total": 10
+    }
+  },
+  "failures": [
+    [
+      17,
+      "Қымбат сатып алуларды көрсет",
+      "get_anomalies",
+      null,
+      "unknown",
+      null
+    ],
+    [
+      18,
+      "Бағасы жоғары тауарларды тап",
+      "get_anomalies",
+      null,
+      "get_volume_anomalies",
+      null
+    ],
+    [
+      20,
+      "Сатып алу бағасының ауытқуларын көрсет",
+      "get_anomalies",
+      null,
+      "get_volume_anomalies",
+      null
+    ]
+  ]
+}

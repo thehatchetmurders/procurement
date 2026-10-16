@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: procurement-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: procurement
+      POSTGRES_USER: procurement
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - procurement_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U procurement -d procurement"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  agent:
+    build: .
+    container_name: procurement-agent
+    stdin_open: true
+    tty: true
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://procurement:${POSTGRES_PASSWORD}@postgres:5432/procurement
+      OLLAMA_URL: http://host.docker.internal:11434/api/chat
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  procurement_pgdata:

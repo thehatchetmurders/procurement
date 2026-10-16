@@ -1,0 +1,11 @@
+.env
+.git
+.venv
+venv
+__pycache__
+*.pyc
+.idea
+*.json
+*.jsonl
+*.parquet
+*.csv
